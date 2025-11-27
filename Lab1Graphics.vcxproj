@@ -129,7 +129,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Libraries;$(SolutionDir)Dependencies\Libraries\slang</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32s.lib;Winmm.lib;slang.lib;spirv-cross-core.lib;spirv-cross-glsl.lib;winmm.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32s.lib;Winmm.lib;slang.lib;spirv-cross-cored.lib;spirv-cross-glsld.lib;winmm.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -158,7 +158,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Libraries;$(SolutionDir)Dependencies\Libraries\slang</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32s.lib;Winmm.lib;slang.lib;spirv-cross-corer.lib;spirv-cross-glslr.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32s.lib;Winmm.lib;slang.lib;spirv-cross-core.lib;spirv-cross-glsl.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>

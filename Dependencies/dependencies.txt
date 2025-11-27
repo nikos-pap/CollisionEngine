@@ -5,6 +5,7 @@ GLFW\include\GLFW\
 glm\glm\
 glew\include\GL\
 slang\include\
+Check Note below about spirv-cross
 spirv_cross\ that includes:
 	GLSL.std.450.h
 	spirv.hpp
@@ -16,39 +17,36 @@ spirv_cross\ that includes:
 	spirv_cross_parsed_ir.hpp
 	spirv_glsl.hpp
 	spirv_parser.hpp
-from spirv-cross (repository: https://github.com/KhronosGroup/SPIRV-Cross/)
+
+from spirv-cross you need to install Vulkan by LunarG* (https://vulkan.lunarg.com/sdk/home)
+--------------- *Note: --------------- 
+spirv-cross is surprisingly hard to find compiled. Thankfully LunarG provides compiled binaries as part of their Vulkan SDK.
+it's found at <Vulkan SDK Install Folder> dependencies. Very temporary fix until CMake is done properly
+--------------------------------------
+<Vulkan SDK Install Folder>/Include/spirv-cross/
+Copy spirv-cross folder to Dependencies/Code/
+and <Vulkan SDK Install Folder>/Lib/spirv-cross/
+to Dependencies/Libraries/
+
 
 slang library (repository: https://github.com/shader-slang/slang)
-
---------------- Note: --------------- 
-for now we need spirv-cross compiled(clone for repo, run CMake -B build) for debug and release as release versions are from 08/2021.
-I don't think I can provide compiled binaries here, so you need to compile them by yourself until I find a better solution.
-
 
 Dependencies\Libraries
 We need to copy the following files to this folder:
 GLFW\lib-vc2019\glfw3.lib
 glew\lib\Release\x64\glew32s.lib
 slang libraries folder that contains slang.lib & gfx.lib
-
-spirv-cross-core.lib is the debug compiled version of spirv-cross
-spirv-cross-core.pdb
-spirv-cross-glsl.lib is the debug compiled version of spirv-cross-glsl
-spirv-cross-glsl.pdb
-
-spirv-cross-corer.lib is the release compiled version of spirv-cross
-spirv-cross-glslr.lib is the release compiled version of spirv-cross-glsl
-
-if you miss one of the two sets of files required will break the respective build. 
+spirv-cross from <Vulkan SDK Install Folder>/Lib/spirv-cross/
+to Dependencies/Libraries/
 
 Dependencies\Binaries
 slang folder: gfx.dll, gfx.slang, slang.dll, slang-slang, slang-glslang.dll, slang-glsl-module.dll
 
 Properties
 This is deprecated. I've included the vcxproj file that contains everything needed 
-C	preprocessor -> GLEW_STATIC
+C	preprocessor -> GLEW_STATIC, SLANG_STATIC, VULKAN_HPP_NO_EXCEPTIONS
 C	general -> $(SolutionDir)Dependencies\Code
 Linker	general -> $(SolutionDir)Dependencies\Libraries
-Linker	input -> glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32s.lib;Winmm.lib;slang.lib;gfx.lib
+Linker	input -> glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32s.lib;Winmm.lib;slang.lib;spirv-cross.lib
 Build Events -> Post-Build Event -> Command Line: call "$(ProjectDir)copy_dlls.bat" "$(OutDir)"
 
