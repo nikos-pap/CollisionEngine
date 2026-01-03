@@ -18,6 +18,35 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\ApplicationController.cpp" />
+    <ClCompile Include="src\CameraController.cpp" />
+    <ClCompile Include="src\DynamicShapeArray.cpp" />
+    <ClCompile Include="src\GLSLShader.cpp" />
+    <ClCompile Include="src\InputController.cpp" />
+    <ClCompile Include="src\OpenGLRenderer.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\ShaderCompiler.cpp" />
+    <ClCompile Include="src\ShapeFactory.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ApplicationController.h" />
+    <ClInclude Include="src\CameraController.h" />
+    <ClInclude Include="src\DynamicShapeArray.h" />
+    <ClInclude Include="src\ErrorCodes.h" />
+    <ClInclude Include="src\GLSLShader.h" />
+    <ClInclude Include="src\InputController.h" />
+    <ClInclude Include="src\opengl.h" />
+    <ClInclude Include="src\OpenGLProfiler.h" />
+    <ClInclude Include="src\OpenGLRenderer.h" />
+    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\ShaderCompiler.h" />
+    <ClInclude Include="src\Shape.h" />
+    <ClInclude Include="src\ShapeFactory.h" />
+    <ClInclude Include="src\SpatialGrid.h" />
+    <ClInclude Include="src\stb_image.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -168,46 +197,6 @@
       <Command>call "$(ProjectDir)copy_dlls.bat" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="ApplicationController.cpp" />
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="CameraController.cpp" />
-    <ClCompile Include="DynamicShapeArray.cpp" />
-    <ClCompile Include="InputController.cpp" />
-    <ClCompile Include="OpenGLRenderer.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="GLSLShader.cpp" />
-    <ClCompile Include="ShaderCompiler.cpp" />
-    <ClCompile Include="ShapeFactory.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ApplicationController.h" />
-    <ClInclude Include="CameraController.h" />
-    <ClInclude Include="DynamicShapeArray.h" />
-    <ClInclude Include="ErrorCodes.h" />
-    <ClInclude Include="OpenGLProfiler.h" />
-    <ClInclude Include="InputController.h" />
-    <ClInclude Include="opengl.h" />
-    <ClInclude Include="OpenGLRenderer.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="GLSLShader.h" />
-    <ClInclude Include="ShaderCompiler.h" />
-    <ClInclude Include="Shape.h" />
-    <ClInclude Include="ShapeFactory.h" />
-    <ClInclude Include="SpatialGrid.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="batch_common.slang" />
-    <None Include="batch_shader.frag" />
-    <None Include="batch_shader.slang" />
-    <None Include="batch_shader.vert" />
-    <None Include="common.slang" />
-    <None Include="obj_shader.frag" />
-    <None Include="obj_shader.slang" />
-    <None Include="obj_shader.vert" />
-    <None Include="obj_tex_shader.slang" />
-    <None Include="Shader.shader" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

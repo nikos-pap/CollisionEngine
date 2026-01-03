@@ -94,9 +94,9 @@ int ApplicationController::start() {
 	// SpirV binary shader:
 	//renderer->initShader("obj_shader_vs.spv", "obj_shader_fs.spv");
 	// Slang shaders:
-	renderer->initShader("obj_shader.slang");
-	renderer->initShader("obj_tex_shader.slang");
-	renderer->initShader("batch_shader.slang"); // slang doesn't formally support OpenGL yet
+	renderer->initShader("src/shaders/obj_shader.slang");
+	renderer->initShader("src/shaders/obj_tex_shader.slang");
+	renderer->initShader("src/shaders/batch_shader.slang"); 
 
 	// Helpers to profile the code
 #ifdef _DEBUG

@@ -84,7 +84,7 @@ std::vector<ShaderOutput> SlangCompiler::compile(const std::string& source,
     sessionDesc.targets = &targetDesc;
     sessionDesc.targetCount = 1;
 
-    const char* searchPaths[] = { "./", "../shaders/", "../../shaders/" };
+    const char* searchPaths[] = { "./", "src/shaders/", "./shaders/", "../shaders/", "../../shaders/" };
     sessionDesc.searchPaths = searchPaths;
     sessionDesc.searchPathCount = 3;
 
