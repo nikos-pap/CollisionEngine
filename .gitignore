@@ -1,10 +1,8 @@
 ### Visual Studio 
 .vs/*
 
-# Odd files
-Imported Code/Sphere(1).cpp
-
-### Debug
+### Releases
+build/
 /Debug/
 Lab1Graphics/Debug/*
 Lab1Graphics/x64/Debug/*
@@ -12,7 +10,6 @@ Lab1Graphics/x64/Debug/*
 
 ### Dependencies
 /Dependencies/*
-Imported Code/Sphere(1).cpp
 
 *.jpg
 /Lab1Graphics/x64

@@ -18,111 +18,121 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Application.cpp">
+    <ClCompile Include="src\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DynamicShapeArray.cpp">
+    <ClCompile Include="src\ApplicationController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GLSLShader.cpp">
+    <ClCompile Include="src\CameraController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CameraController.cpp">
+    <ClCompile Include="src\DynamicShapeArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ApplicationController.cpp">
+    <ClCompile Include="src\GLSLShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InputController.cpp">
+    <ClCompile Include="src\InputController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShapeFactory.cpp">
+    <ClCompile Include="src\OpenGLRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OpenGLRenderer.cpp">
+    <ClCompile Include="src\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
+    <ClCompile Include="src\ShaderCompiler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderCompiler.cpp">
+    <ClCompile Include="src\ShapeFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glad\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CameraController.h">
+    <ClInclude Include="src\ApplicationController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputController.h">
+    <ClInclude Include="src\CameraController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ApplicationController.h">
+    <ClInclude Include="src\DynamicShapeArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opengl.h">
+    <ClInclude Include="src\ErrorCodes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShapeFactory.h">
+    <ClInclude Include="src\GLSLShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGLRenderer.h">
+    <ClInclude Include="src\InputController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
+    <ClInclude Include="src\opengl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
+    <ClInclude Include="src\OpenGLProfiler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderCompiler.h">
+    <ClInclude Include="src\OpenGLRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GLSLShader.h">
+    <ClInclude Include="src\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicShapeArray.h">
+    <ClInclude Include="src\ShaderCompiler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGLProfiler.h">
+    <ClInclude Include="src\Shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpatialGrid.h">
+    <ClInclude Include="src\ShapeFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ErrorCodes.h">
+    <ClInclude Include="src\SpatialGrid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="common.slang">
+    <None Include="src\shaders\batch_common.slang">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="obj_shader.slang">
+    <None Include="src\shaders\batch_shader.slang">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="obj_shader.vert">
+    <None Include="src\shaders\common.slang">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="obj_shader.frag">
+    <None Include="src\shaders\obj_shader.frag">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="batch_common.slang">
+    <None Include="src\shaders\obj_shader.slang">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="batch_shader.slang">
+    <None Include="src\shaders\obj_shader.vert">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="Shader.shader">
+    <None Include="src\shaders\obj_shader_fs.spv">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="batch_shader.vert">
+    <None Include="src\shaders\obj_shader_vs.spv">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="batch_shader.frag">
+    <None Include="src\shaders\obj_tex_shader.slang">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="obj_tex_shader.slang">
+    <None Include="src\shaders\Shader.shader">
       <Filter>Source Files\Shaders</Filter>
     </None>
+    <None Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
 </Project>

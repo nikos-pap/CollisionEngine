@@ -106,7 +106,8 @@ void OpenGLRenderer::init(uint16_t windowWidth, uint16_t windowHeight) {
 
 	glfwMakeContextCurrent(window);
 
-	if (glewInit() != GLEW_OK) {
+	//if (glewInit() != GLEW_OK) {
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		throw std::runtime_error("GLEW initialization failed!");
 	}
 	int flags;

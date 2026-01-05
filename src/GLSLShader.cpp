@@ -1,7 +1,7 @@
 #include "GLSLShader.h"
 #include <iostream>
 #include <fstream>
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <spirv_cross/spirv_glsl.hpp>
 
 std::vector<uint8_t> ReadSPIRV(const std::string& filename) {
@@ -288,7 +288,6 @@ uint32_t GLSLShader::CreateSpirVShader(const std::vector<uint8_t>& VertexSPV, co
 		free(infoLog);
 		glDeleteProgram(program);
 		throw std::runtime_error("SPIR-V Shader linking failed.");
-		return 0;
 	}
 	glValidateProgram(program);
 	glGetProgramiv(program, GL_VALIDATE_STATUS, &isLinked);

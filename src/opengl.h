@@ -1,6 +1,8 @@
 #pragma once
 // Include GLEW needs to be before any other openGL includes
-#include <GL/glew.h>
+//#include <GL/glew.h>
+#include<glad/glad.h>
+
 // Include GLFW
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>

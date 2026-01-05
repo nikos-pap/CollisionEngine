@@ -23,6 +23,7 @@
     <ClCompile Include="src\ApplicationController.cpp" />
     <ClCompile Include="src\CameraController.cpp" />
     <ClCompile Include="src\DynamicShapeArray.cpp" />
+    <ClCompile Include="src\glad\glad.c" />
     <ClCompile Include="src\GLSLShader.cpp" />
     <ClCompile Include="src\InputController.cpp" />
     <ClCompile Include="src\OpenGLRenderer.cpp" />
@@ -46,6 +47,22 @@
     <ClInclude Include="src\ShapeFactory.h" />
     <ClInclude Include="src\SpatialGrid.h" />
     <ClInclude Include="src\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="src\shaders\batch_common.slang" />
+    <None Include="src\shaders\batch_shader.slang" />
+    <None Include="src\shaders\common.slang" />
+    <None Include="src\shaders\obj_shader.frag" />
+    <None Include="src\shaders\obj_shader.slang" />
+    <None Include="src\shaders\obj_shader.vert" />
+    <None Include="src\shaders\obj_shader_fs.spv" />
+    <None Include="src\shaders\obj_shader_vs.spv" />
+    <None Include="src\shaders\obj_tex_shader.slang" />
+    <None Include="src\shaders\Shader.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -149,23 +166,23 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;SLANG_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SLANG_STATIC;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Code;$(SolutionDir)Dependencies\Code\slang</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Code;$(SolutionDir)Dependencies\Code\slang;$(SolutionDir)include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Libraries;$(SolutionDir)Dependencies\Libraries\slang</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32s.lib;Winmm.lib;slang.lib;spirv-cross-cored.lib;spirv-cross-glsld.lib;winmm.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;Winmm.lib;slang.lib;spirv-cross-cored.lib;spirv-cross-glsld.lib;winmm.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>call "$(ProjectDir)copy_dlls.bat" "$(OutDir)"</Command>
+      <Command>call "$(ProjectDir)copy_runtime.bat" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -174,9 +191,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;SLANG_STATIC;NDEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SLANG_STATIC;NDEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Code;$(SolutionDir)Dependencies\Code\slang</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\Code;$(SolutionDir)Dependencies\Code\slang;$(SolutionDir)include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -187,14 +204,14 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Libraries;$(SolutionDir)Dependencies\Libraries\slang</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32s.lib;Winmm.lib;slang.lib;spirv-cross-core.lib;spirv-cross-glsl.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;Winmm.lib;slang.lib;spirv-cross-core.lib;spirv-cross-glsl.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>call "$(ProjectDir)copy_dlls.bat" "$(OutDir)"</Command>
+      <Command>call "$(ProjectDir)copy_runtime.bat" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
