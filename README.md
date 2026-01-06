@@ -27,26 +27,6 @@ If your system isn't on Win32, follow the build instructions.
 
 3. According to your build type, run your debugger using the appropriate commands. We're using Visual Studio 2022, so a slnx project is deployed on build folder.
 
-## Manual build 
-### **(WILL BE DEPRECATED SOON to remove dependencies from the repo)**
-
-1. **Clone the Repository**:
-
-    ```bash
-    git clone https://github.com/uminode/Lab1-Graphics.git
-    ```
-
-2. **Open the Solution in Visual Studio**:
-    - Navigate to the project folder.
-    - Open the `.sln` file in Visual Studio.
-
-3. **Add Dependencies**:
-    - Dependencies are located in the `dependencies` folder.
-    - Detailed instructions for adding them to the project can be found in the `dependencies/README.txt` file.
-
-4. **Build and Run**:
-    - Once the dependencies are set up, build the project by selecting **Build > Build Solution**.
-    - If the build succeeds, run the demo by pressing **F5** or selecting **Debug > Start Debugging**.
 ## Execution Instructions
 ![Example Image](Images/ExampleImage2.png)
 Once you run the demo, the program will open in the 3D scene. You can move around the scene, spawn small random shapes, and observe the collisions between the objects in real-time. Use the controls below to navigate and interact with the scene.
