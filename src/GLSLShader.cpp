@@ -4,12 +4,12 @@
 #include <glad/glad.h>
 #include <spirv_cross/spirv_glsl.hpp>
 
-std::vector<uint8_t> ReadSPIRV(const std::string& filename) {
-	std::ifstream file(filename, std::ios::in | std::ios::binary);
+std::vector<uint8_t> ReadSPIRV(const std::filesystem::path& filename) {
+	const auto resolvedPath = ResolveFromExeDir(filename);
+	std::ifstream file(resolvedPath); 
 
 	if (!file.is_open()) {
-		std::cout << "Failed to open SPIR-V file: " << filename << std::endl;
-		return std::vector<uint8_t>{};
+		throw std::runtime_error("Failed to open SPIR-V file: " + resolvedPath.string());
 	}
 
 	file.seekg(0, std::ios::end);
@@ -92,16 +92,19 @@ std::string GLSLShader::ConvertSPIRVToGLSL(
 
 	return glslSource;
 }
-GLSLShader::GLSLShader(const std::string& filepath)
+GLSLShader::GLSLShader(const std::filesystem::path& filepath)
 	: m_FilePath{filepath}, m_RendererID{0}
 {
 	ParseShader(filepath);
 }
 
-GLSLShader::GLSLShader(const std::string& vertFilepath, const std::string& fragFilepath)
+GLSLShader::GLSLShader(const std::filesystem::path& vertFilepath, const std::filesystem::path& fragFilepath)
 	: m_FilePath{ "" }, m_RendererID{ 0 }
 {
-	if (vertFilepath.find(".vert") != std::string::npos && fragFilepath.find(".frag") != std::string::npos) {
+	const auto vext = vertFilepath.extension();
+	const auto fext = fragFilepath.extension();
+	//if (vertFilepath.find(".vert") != std::string::npos && fragFilepath.find(".frag") != std::string::npos) {
+	if (vext == ".vert" && fext == ".frag") {
 		ShaderProgramSource source;
 		source.VertexSource = "";
 		source.FragmentSource = "";
@@ -131,7 +134,8 @@ GLSLShader::GLSLShader(const std::string& vertFilepath, const std::string& fragF
 		}
 		m_RendererID = CreateShader(source.VertexSource, source.FragmentSource);
 	}
-	else if (vertFilepath.find(".spv") != std::string::npos && fragFilepath.find(".spv") != std::string::npos) {
+	//else if (vertFilepath.find(".spv") != std::string::npos && fragFilepath.find(".spv") != std::string::npos) {
+	else if (vext == ".spv" && fext == ".spv") {
 		std::vector<uint8_t> vertexSPVbytes = ReadSPIRV(vertFilepath);
 		std::vector<uint8_t> fragmentSPVbytes = ReadSPIRV(fragFilepath);
 
@@ -161,8 +165,12 @@ void GLSLShader::Unbind() const
 	glUseProgram(0);
 }
 
-void GLSLShader::ParseShader(const std::string& filepath) {
-	std::ifstream stream(filepath); // TODO: check if file opened successfully
+void GLSLShader::ParseShader(const std::filesystem::path& filepath) {
+	const auto resolvedPath = ResolveFromExeDir(filepath);
+	std::ifstream stream(resolvedPath); 
+	if (!stream.is_open()) {
+		throw std::runtime_error("Failed to open shader file: " + resolvedPath.string());
+	}
 
 	enum class ShaderType
 	{
@@ -172,7 +180,9 @@ void GLSLShader::ParseShader(const std::string& filepath) {
 	std::string line;
 	std::stringstream ss[2];
 	ShaderType type = ShaderType::NONE;
-	if (filepath.find(".shader") != std::string::npos) {
+	const auto fext = filepath.extension();
+	//if (filepath.find(".shader") != std::string::npos) {
+	if (fext == ".shader") {
 		while (getline(stream, line)) {
 			if (line.find("#shader") != std::string::npos) {
 				if (line.find("vertex") != std::string::npos) {
@@ -189,7 +199,8 @@ void GLSLShader::ParseShader(const std::string& filepath) {
 		m_RendererID = CreateShader(ss[0].str(), ss[1].str());
 	}
 	else {
-		if (filepath.find(".slang") != std::string::npos) {
+		//if (filepath.find(".slang") != std::string::npos) {
+		if (fext == ".slang") {
 			std::string source = std::string((std::istreambuf_iterator<char>(stream)), std::istreambuf_iterator<char>());
 			std::vector<ShaderOutput> slangSpirVOutput = slangCompiler.compileToSPIRV(
 				source,

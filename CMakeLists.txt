@@ -29,7 +29,9 @@ endif()
 
 message(STATUS "Downloading Slang ${SLANG_VERSION} from ${SLANG_URL}...")
 
-FetchContent_Declare(slang_zip URL https://github.com/shader-slang/slang/releases/download/v${SLANG_VERSION}/slang-${SLANG_VERSION}-${SLANG_OS}.zip)
+FetchContent_Declare(slang_zip 
+					URL https://github.com/shader-slang/slang/releases/download/v${SLANG_VERSION}/slang-${SLANG_VERSION}-${SLANG_OS}.zip
+					DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
 FetchContent_MakeAvailable(slang_zip)
 
 #message(STATUS "Slang dir: ${slang_zip_SOURCE_DIR}") #DEBUG
@@ -246,8 +248,13 @@ if (MSVC)
 endif()
 
 # ---------- POST-BUILD: Copy Slang DLL ----------
+#if(MSVC AND CMAKE_GENERATOR MATCHES "Visual Studio")
+## WHAT DOES A PERSON HAVE TO DO TO WORK WITH Visual Studio....
+#	set_target_properties(CollisionEngine PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${OutDir}")
+#else()
+#	set_target_properties(CollisionEngine PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "$<TARGET_FILE_DIR:CollisionEngine>")
+#endif()
 if(WIN32)
-	set_target_properties(CollisionEngine PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "$<TARGET_FILE_DIR:CollisionEngine>")
     add_custom_command(TARGET CollisionEngine POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         $<TARGET_FILE:slang>
@@ -269,6 +276,12 @@ add_custom_command(TARGET CollisionEngine POST_BUILD
     ${CMAKE_SOURCE_DIR}/src/shaders
     $<TARGET_FILE_DIR:CollisionEngine>/shaders
     COMMENT "Copying slang shaders to output directory"
+)
+add_custom_command(TARGET CollisionEngine POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/Textures
+    $<TARGET_FILE_DIR:CollisionEngine>/textures
+    COMMENT "Copying textures to output directory"
 )
 # ---------- INSTALL (optional) ----------
 #install(TARGETS CollisionEngine DESTINATION bin)

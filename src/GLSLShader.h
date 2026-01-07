@@ -4,6 +4,7 @@
 #include <sstream>
 #include <glm/glm.hpp>
 #include "ShaderCompiler.h"
+#include "PathUtils.h"
 
 struct ShaderProgramSource {
 	std::string VertexSource;
@@ -13,11 +14,12 @@ struct ShaderProgramSource {
 class GLSLShader {
 private:
 	SlangCompiler slangCompiler;
-	std::string m_FilePath;
+	std::string m_FilePath2;
+	std::filesystem::path m_FilePath;
 	uint32_t m_RendererID;
 public:
-	GLSLShader(const std::string& filepath);
-	GLSLShader(const std::string& vertFilepath, const std::string& fragFilepath);
+	GLSLShader(const std::filesystem::path& filepath);
+	GLSLShader(const std::filesystem::path& vertFilepath, const std::filesystem::path& fragFilepath);
 	GLSLShader();
 	~GLSLShader();
 
@@ -29,7 +31,7 @@ private:
 		const std::vector<uint8_t>& spirvBytes,
 		bool isVertexShader
 	);
-	void ParseShader(const std::string& filepath);
+	void ParseShader(const std::filesystem::path& filepath);
 	uint32_t CompileShader(uint32_t type, const std::string& source);
 	uint32_t CreateShader(const std::string& vertexGLSLShader, const std::string& fragmentGLSLShader);
 	uint32_t CompileSpirVShader(uint32_t type, const std::vector<uint8_t>& SPV);

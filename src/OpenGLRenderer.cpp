@@ -2,6 +2,8 @@
 #include <iostream>
 #define STB_IMAGE_IMPLEMENTATION   
 #include "stb_image.h"
+#include "PathUtils.h"
+#include <filesystem>
 
 #ifdef _DEBUG
 void APIENTRY glDebugOutput(GLenum source,
@@ -44,6 +46,7 @@ OpenGLRenderer::~OpenGLRenderer() {
 //loads texture from file
 void OpenGLRenderer::loadTexture(const std::string &fileName)
 {
+	std::filesystem::path resolvedPath = ResolveFromExeDir(fileName);
 	uint32_t texture;
 	glGenTextures(1, &texture);
 
@@ -53,7 +56,8 @@ void OpenGLRenderer::loadTexture(const std::string &fileName)
 	//Define all 6 faces
 	// load and generate the texture
 	int width, height, nrChannels;
-	unsigned char* data = stbi_load(fileName.c_str(), &width, &height, &nrChannels, STBI_rgb_alpha);
+	//unsigned char* data = stbi_load(fileName.c_str(), &width, &height, &nrChannels, STBI_rgb_alpha);
+	unsigned char* data = stbi_load(resolvedPath.string().c_str(), &width, &height, &nrChannels, STBI_rgb_alpha);
 	if (data)
 	{
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -279,10 +283,9 @@ void OpenGLRenderer::drawElements(uint32_t ib_size) {
 	glDrawElements(GL_TRIANGLES, ib_size, GL_UNSIGNED_INT, nullptr);
 }
 void OpenGLRenderer::initShader(const std::string& path) {
-	//GLSLShader aShader{ path };
+
 	GLSLShader* aShader = new GLSLShader{ path };
-	//shaders.push_back(aShader);
-	//shaders.back().Bind();
+
 	shaders.push_back(aShader);
 	shaders.back()->Bind();
 }
